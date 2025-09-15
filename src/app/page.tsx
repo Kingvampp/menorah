@@ -30,7 +30,6 @@ export default function Home() {
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress = Math.min(scrollTop / docHeight, 1);
-      setScrollProgress(progress);
       
       // First page text slides horizontally left 10% faster than menorah movement
       const firstPageTextSlide = 0 - (progress * 1.1 * 30); // Move from x=0 to x=-33 (10% faster than menorah, increased for mobile)
