@@ -17,7 +17,7 @@ interface Product {
   category: string;
 }
 
-export default function ProductsPage() {
+function ProductsContent() {
   const searchParams = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [showSubCategories, setShowSubCategories] = useState(false);
@@ -991,5 +991,13 @@ export default function ProductsPage() {
         </div>
       </footer>
     </div>
+  );
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ProductsContent />
+    </Suspense>
   );
 }
