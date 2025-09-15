@@ -688,12 +688,12 @@ function ProductsPageContent() {
             {/* Product Image Section */}
             <div className="relative bg-white">
               {/* Main Image Display */}
-              <div className="aspect-[4/3] max-h-80 flex items-center justify-center relative bg-gray-50">
+              <div className="aspect-square max-h-[600px] flex items-center justify-center relative bg-gray-50">
                 <div 
                   className="w-full h-full flex items-center justify-center cursor-pointer group"
                   onClick={() => handleImageZoom(currentImageIndex)}
                 >
-                  <div className="text-6xl md:text-7xl transition-transform duration-300 group-hover:scale-105">
+                  <div className="text-[8rem] transition-transform duration-300 group-hover:scale-105">
                     {currentImageIndex === 0 ? (
                       selectedProduct.category === 'women' ? '💎' :
                       selectedProduct.category === 'men' ? '💍' : '🕎'
