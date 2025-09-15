@@ -45,7 +45,7 @@ export default function ContactPage() {
               Get In Touch
             </h1>
             <p className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed font-light">
-              We'd love to hear from you. Whether you're looking for a custom piece or have questions about our collection, we're here to help.
+              We&apos;d love to hear from you. Whether you&apos;re looking for a custom piece or have questions about our collection, we&apos;re here to help.
             </p>
           </div>
         </div>
@@ -62,7 +62,7 @@ export default function ContactPage() {
                   Send us a Message
                 </h2>
                 <p className="text-base sm:text-lg text-gray-600 font-light">
-                  Fill out the form below and we'll get back to you within 24 hours.
+                  Fill out the form below and we&apos;ll get back to you within 24 hours.
                 </p>
               </div>
 
@@ -298,7 +298,7 @@ export default function ContactPage() {
               <div className={`overflow-hidden transition-all duration-300 ${openFAQ === 1 ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
                 <div className="px-6 pb-4">
                   <p className="text-gray-600 font-light leading-relaxed">
-                    We use only the finest materials including 18k and 24k gold, platinum, and ethically sourced diamonds and gemstones from Myanmar's rich heritage. All our materials come with proper certification.
+                    We use only the finest materials including 18k and 24k gold, platinum, and ethically sourced diamonds and gemstones from Myanmar&apos;s rich heritage. All our materials come with proper certification.
                   </p>
                 </div>
               </div>
@@ -325,7 +325,7 @@ export default function ContactPage() {
               <div className={`overflow-hidden transition-all duration-300 ${openFAQ === 2 ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
                 <div className="px-6 pb-4">
                   <p className="text-gray-600 font-light leading-relaxed">
-                    Custom pieces typically take 4-8 weeks depending on complexity. We'll provide a detailed timeline during your consultation and keep you updated throughout the process.
+                    Custom pieces typically take 4-8 weeks depending on complexity. We&apos;ll provide a detailed timeline during your consultation and keep you updated throughout the process.
                   </p>
                 </div>
               </div>

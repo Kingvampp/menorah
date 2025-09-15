@@ -161,17 +161,6 @@ export default function ProductsPage() {
     }
   ];
 
-  const categories = [
-    { id: 'all', name: 'All Products' },
-    { id: 'women', name: 'For Her' },
-    { id: 'men', name: 'For Him' },
-    { id: 'necklaces', name: 'Necklaces' },
-    { id: 'earrings', name: 'Earrings' },
-    { id: 'bracelets', name: 'Bracelets' },
-    { id: 'rings', name: 'Rings' },
-    { id: 'pendants', name: 'Pendants' },
-    { id: 'unisex', name: 'Unisex' }
-  ];
 
   const handleMainCategoryClick = (category: string) => {
     if (category === 'all') {
@@ -211,10 +200,6 @@ export default function ProductsPage() {
     document.body.style.overflow = 'unset';
   };
 
-  const handleImageClick = () => {
-    // Cycle through images
-    setCurrentImageIndex((currentImageIndex + 1) % 6);
-  };
 
   const handleImageZoom = (imageIndex) => {
     setZoomedImageIndex(imageIndex);

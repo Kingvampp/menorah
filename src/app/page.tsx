@@ -10,7 +10,6 @@ import Navbar from '@/components/Navbar';
 
 export default function Home() {
   const [textSlideX, setTextSlideX] = useState(0); // Start text at center
-  const [scrollProgress, setScrollProgress] = useState(0);
   const [secondPageTextX, setSecondPageTextX] = useState(0); // Second page text starts at center
   const [earringX, setEarringX] = useState(0); // Earring starts at center
   const [thirdPageTextX, setThirdPageTextX] = useState(0); // Third page text starts at center
@@ -219,7 +218,7 @@ export default function Home() {
               href="/products?category=women" 
               className="border border-gray-800 text-gray-800 px-8 sm:px-12 py-3 sm:py-4 hover:bg-gray-800 hover:text-white transition-all duration-300 flex items-center gap-3 inline-block font-light tracking-widest uppercase text-sm mx-auto lg:ml-auto lg:mr-0"
             >
-              Shop Women's Collection
+              Shop Women&apos;s Collection
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
@@ -274,14 +273,14 @@ export default function Home() {
             </div>
 
             <p className="text-base sm:text-lg text-gray-600 max-w-md leading-relaxed font-light mx-auto lg:ml-auto lg:mr-0">
-              Discover our sophisticated collection of men's jewelry, featuring bold designs and premium materials. From elegant cufflinks to statement rings, each piece embodies masculine style and enduring quality.
+              Discover our sophisticated collection of men&apos;s jewelry, featuring bold designs and premium materials. From elegant cufflinks to statement rings, each piece embodies masculine style and enduring quality.
             </p>
 
             <Link 
               href="/products?category=men" 
               className="border border-gray-800 text-gray-800 px-8 sm:px-12 py-3 sm:py-4 hover:bg-gray-800 hover:text-white transition-all duration-300 flex items-center gap-3 inline-block font-light tracking-widest uppercase text-sm mx-auto lg:ml-auto lg:mr-0"
             >
-              Shop Men's Collection
+              Shop Men&apos;s Collection
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>

@@ -29,10 +29,10 @@ export default function AboutPage() {
                 Crafting Excellence in Yangon
               </h2>
               <p className="text-base sm:text-lg text-gray-600 leading-relaxed font-light">
-                Our journey began in 1952 when master jeweler Samuel Menorah established our workshop in downtown Yangon with a simple yet profound mission: to create jewelry that tells stories, preserves traditions, and celebrates life's most precious moments.
+                Our journey began in 1952 when master jeweler Samuel Menorah established our workshop in downtown Yangon with a simple yet profound mission: to create jewelry that tells stories, preserves traditions, and celebrates life&apos;s most precious moments.
               </p>
               <p className="text-base sm:text-lg text-gray-600 leading-relaxed font-light">
-                Today, under the leadership of his granddaughter Sarah, we continue to honor this legacy while pushing the boundaries of contemporary design. Each piece in our collection is a testament to our commitment to excellence, authenticity, and timeless beauty, crafted with the finest materials sourced from Myanmar's rich gemstone heritage.
+                Today, under the leadership of his granddaughter Sarah, we continue to honor this legacy while pushing the boundaries of contemporary design. Each piece in our collection is a testament to our commitment to excellence, authenticity, and timeless beauty, crafted with the finest materials sourced from Myanmar&apos;s rich gemstone heritage.
               </p>
             </div>
             <div className="bg-gray-50 rounded-sm p-8 h-96 flex items-center justify-center">
@@ -60,10 +60,10 @@ export default function AboutPage() {
                 Our Heritage
               </h3>
               <p className="text-base text-gray-600 leading-relaxed font-light">
-                Myanmar has long been known as the "Land of Gems," home to some of the world's finest rubies, sapphires, and jade. Our workshop in Yangon allows us to work directly with local gemstone dealers and master craftsmen, ensuring authenticity and supporting the local community.
+                Myanmar has long been known as the &quot;Land of Gems,&quot; home to some of the world&apos;s finest rubies, sapphires, and jade. Our workshop in Yangon allows us to work directly with local gemstone dealers and master craftsmen, ensuring authenticity and supporting the local community.
               </p>
               <p className="text-base text-gray-600 leading-relaxed font-light">
-                Our location in the heart of Yangon's jewelry district gives us access to generations of traditional techniques passed down through families, while also embracing modern design principles that appeal to contemporary tastes.
+                Our location in the heart of Yangon&apos;s jewelry district gives us access to generations of traditional techniques passed down through families, while also embracing modern design principles that appeal to contemporary tastes.
               </p>
             </div>
             <div className="bg-white rounded-sm p-8 h-80 flex items-center justify-center">
