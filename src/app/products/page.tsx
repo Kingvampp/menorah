@@ -80,7 +80,7 @@ export default function ProductsPage() {
       category: "men"
     },
     {
-      id: 4,
+      id: "4",
       name: "Diamond Solitaire Ring",
       price: "$2,500",
       description: "Classic solitaire ring with brilliant-cut diamond",
@@ -89,7 +89,7 @@ export default function ProductsPage() {
       category: "women"
     },
     {
-      id: 5,
+      id: "5",
       name: "Men's Gold Cufflinks",
       price: "$850",
       description: "Handcrafted gold cufflinks with subtle geometric patterns",
@@ -98,7 +98,7 @@ export default function ProductsPage() {
       category: "men"
     },
     {
-      id: 6,
+      id: "6",
       name: "Men's Signet Ring",
       price: "$1,800",
       description: "Bold signet ring with personalized engraving option",
@@ -107,7 +107,7 @@ export default function ProductsPage() {
       category: "men"
     },
     {
-      id: 7,
+      id: "7",
       name: "Luxury Royal Menorah",
       price: "$6,800",
       description: "Opulent design featuring rare gemstones and intricate filigree work",
@@ -116,7 +116,7 @@ export default function ProductsPage() {
       category: "unisex"
     },
     {
-      id: 8,
+      id: "8",
       name: "Vintage Art Deco Menorah",
       price: "$4,500",
       description: "Inspired by 1920s Art Deco style with emerald accents",
@@ -125,7 +125,7 @@ export default function ProductsPage() {
       category: "unisex"
     },
     {
-      id: 9,
+      id: "9",
       name: "Diamond Tennis Necklace",
       price: "$3,200",
       description: "Classic tennis necklace with brilliant-cut diamonds",
@@ -134,7 +134,7 @@ export default function ProductsPage() {
       category: "necklaces"
     },
     {
-      id: 10,
+      id: "10",
       name: "Pearl Drop Earrings",
       price: "$1,800",
       description: "Elegant pearl drop earrings with diamond accents",
@@ -143,7 +143,7 @@ export default function ProductsPage() {
       category: "earrings"
     },
     {
-      id: 11,
+      id: "11",
       name: "Gold Chain Bracelet",
       price: "$950",
       description: "Sophisticated gold chain bracelet with diamond clasp",
@@ -152,7 +152,7 @@ export default function ProductsPage() {
       category: "bracelets"
     },
     {
-      id: 12,
+      id: "12",
       name: "Solitaire Diamond Ring",
       price: "$2,200",
       description: "Classic solitaire ring with brilliant-cut diamond",
@@ -161,7 +161,7 @@ export default function ProductsPage() {
       category: "rings"
     },
     {
-      id: 13,
+      id: "13",
       name: "Diamond Pendant",
       price: "$1,500",
       description: "Elegant diamond pendant on gold chain",
