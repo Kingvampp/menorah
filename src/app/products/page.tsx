@@ -184,7 +184,7 @@ export default function ProductsPage() {
     setSelectedCategory('all');
   };
 
-  const handleProductClick = (product) => {
+  const handleProductClick = (product: any) => {
     setSelectedProduct(product);
     setShowProductPopup(true);
     setCurrentImageIndex(0);
@@ -201,7 +201,7 @@ export default function ProductsPage() {
   };
 
 
-  const handleImageZoom = (imageIndex) => {
+  const handleImageZoom = (imageIndex: number) => {
     setZoomedImageIndex(imageIndex);
     setShowImageZoom(true);
   };
