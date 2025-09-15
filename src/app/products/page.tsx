@@ -7,22 +7,12 @@ import { useSearchParams } from 'next/navigation';
 import Menorah3D from '@/components/Ring3D';
 import Navbar from '@/components/Navbar';
 
-interface Product {
-  id: string;
-  name: string;
-  price: string;
-  description: string;
-  image: string;
-  features: string[];
-  category: string;
-}
-
-function ProductsContent() {
+function ProductsPageContent() {
   const searchParams = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [showSubCategories, setShowSubCategories] = useState(false);
   const [currentMainCategory, setCurrentMainCategory] = useState('all');
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState<typeof products[0] | null>(null);
   const [showProductPopup, setShowProductPopup] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showImageZoom, setShowImageZoom] = useState(false);
@@ -80,7 +70,7 @@ function ProductsContent() {
       category: "men"
     },
     {
-      id: "4",
+      id: 4,
       name: "Diamond Solitaire Ring",
       price: "$2,500",
       description: "Classic solitaire ring with brilliant-cut diamond",
@@ -89,7 +79,7 @@ function ProductsContent() {
       category: "women"
     },
     {
-      id: "5",
+      id: 5,
       name: "Men's Gold Cufflinks",
       price: "$850",
       description: "Handcrafted gold cufflinks with subtle geometric patterns",
@@ -98,7 +88,7 @@ function ProductsContent() {
       category: "men"
     },
     {
-      id: "6",
+      id: 6,
       name: "Men's Signet Ring",
       price: "$1,800",
       description: "Bold signet ring with personalized engraving option",
@@ -107,7 +97,7 @@ function ProductsContent() {
       category: "men"
     },
     {
-      id: "7",
+      id: 7,
       name: "Luxury Royal Menorah",
       price: "$6,800",
       description: "Opulent design featuring rare gemstones and intricate filigree work",
@@ -116,7 +106,7 @@ function ProductsContent() {
       category: "unisex"
     },
     {
-      id: "8",
+      id: 8,
       name: "Vintage Art Deco Menorah",
       price: "$4,500",
       description: "Inspired by 1920s Art Deco style with emerald accents",
@@ -125,7 +115,7 @@ function ProductsContent() {
       category: "unisex"
     },
     {
-      id: "9",
+      id: 9,
       name: "Diamond Tennis Necklace",
       price: "$3,200",
       description: "Classic tennis necklace with brilliant-cut diamonds",
@@ -134,7 +124,7 @@ function ProductsContent() {
       category: "necklaces"
     },
     {
-      id: "10",
+      id: 10,
       name: "Pearl Drop Earrings",
       price: "$1,800",
       description: "Elegant pearl drop earrings with diamond accents",
@@ -143,7 +133,7 @@ function ProductsContent() {
       category: "earrings"
     },
     {
-      id: "11",
+      id: 11,
       name: "Gold Chain Bracelet",
       price: "$950",
       description: "Sophisticated gold chain bracelet with diamond clasp",
@@ -152,7 +142,7 @@ function ProductsContent() {
       category: "bracelets"
     },
     {
-      id: "12",
+      id: 12,
       name: "Solitaire Diamond Ring",
       price: "$2,200",
       description: "Classic solitaire ring with brilliant-cut diamond",
@@ -161,7 +151,7 @@ function ProductsContent() {
       category: "rings"
     },
     {
-      id: "13",
+      id: 13,
       name: "Diamond Pendant",
       price: "$1,500",
       description: "Elegant diamond pendant on gold chain",
@@ -194,7 +184,7 @@ function ProductsContent() {
     setSelectedCategory('all');
   };
 
-  const handleProductClick = (product: Product) => {
+  const handleProductClick = (product: typeof products[0]) => {
     setSelectedProduct(product);
     setShowProductPopup(true);
     setCurrentImageIndex(0);
@@ -994,11 +984,10 @@ function ProductsContent() {
   );
 }
 
-// Main products page component with Suspense boundary
 export default function ProductsPage() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <ProductsContent />
+      <ProductsPageContent />
     </Suspense>
   );
 }
