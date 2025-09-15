@@ -8,7 +8,7 @@ import Earring3D from '@/components/Earring3D';
 import ScrollIndicator from '@/components/ScrollIndicator';
 import Navbar from '@/components/Navbar';
 
-export default function Home() {
+function HomeContent() {
   const [textSlideX, setTextSlideX] = useState(0); // Start text at center
   const [secondPageTextX, setSecondPageTextX] = useState(0); // Second page text starts at center
   const [earringX, setEarringX] = useState(0); // Earring starts at center
@@ -366,5 +366,13 @@ export default function Home() {
       </footer>
 
     </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <HomeContent />
+    </Suspense>
   );
 }
