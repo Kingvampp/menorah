@@ -615,11 +615,11 @@ function ProductsPageContent() {
             {filteredProducts.map((product) => (
               <div key={product.id} className="group cursor-pointer" onClick={() => handleProductClick(product)}>
                 {/* Product Image Container */}
-                <div className="relative aspect-square mb-4 overflow-hidden bg-white">
+                <div className="relative aspect-[4/3] md:aspect-[3/2] lg:aspect-square max-h-64 lg:max-h-80 mb-4 overflow-hidden bg-white">
                   {/* Primary Image */}
                   <div className="absolute inset-0 transition-opacity duration-500 group-hover:opacity-0">
                     <div className="w-full h-full flex items-center justify-center bg-gray-50">
-                      <div className="text-8xl">
+                      <div className="text-6xl md:text-7xl lg:text-8xl">
                         {product.category === 'women' ? '💎' :
                          product.category === 'men' ? '💍' : '🕎'}
                       </div>
@@ -629,7 +629,7 @@ function ProductsPageContent() {
                   {/* Secondary Image (Hover) */}
                   <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
                     <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-amber-50 to-amber-100">
-                      <div className="text-8xl">✨</div>
+                      <div className="text-6xl md:text-7xl lg:text-8xl">✨</div>
                     </div>
                 </div>
                 </div>
