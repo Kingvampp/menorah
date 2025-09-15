@@ -994,6 +994,7 @@ function ProductsContent() {
   );
 }
 
+// Main products page component with Suspense boundary
 export default function ProductsPage() {
   return (
     <Suspense fallback={<div>Loading...</div>}>
