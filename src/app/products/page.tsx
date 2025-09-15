@@ -7,12 +7,22 @@ import { useSearchParams } from 'next/navigation';
 import Menorah3D from '@/components/Ring3D';
 import Navbar from '@/components/Navbar';
 
+interface Product {
+  id: string;
+  name: string;
+  price: string;
+  description: string;
+  image: string;
+  features: string[];
+  category: string;
+}
+
 export default function ProductsPage() {
   const searchParams = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [showSubCategories, setShowSubCategories] = useState(false);
   const [currentMainCategory, setCurrentMainCategory] = useState('all');
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [showProductPopup, setShowProductPopup] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showImageZoom, setShowImageZoom] = useState(false);
@@ -184,7 +194,7 @@ export default function ProductsPage() {
     setSelectedCategory('all');
   };
 
-  const handleProductClick = (product: any) => {
+  const handleProductClick = (product: Product) => {
     setSelectedProduct(product);
     setShowProductPopup(true);
     setCurrentImageIndex(0);
