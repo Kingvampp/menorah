@@ -851,111 +851,6 @@ function ProductsPageContent() {
         </div>
       )}
 
-      {/* Enhanced Image Zoom Modal - Tiffany Style */}
-      {showImageZoom && (
-        <div className="fixed inset-0 z-[60] bg-white flex items-center justify-center">
-          {/* Header Controls */}
-          <div className="absolute top-0 left-0 right-0 z-20 bg-white/90 backdrop-blur-sm border-b border-gray-200">
-            <div className="flex items-center justify-between px-6 py-4">
-              {/* Left - Back Button */}
-              <button 
-                onClick={handleCloseZoom}
-                className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-                <span className="text-sm font-medium">Back</span>
-              </button>
-
-              {/* Center - Image Counter */}
-              <div className="text-gray-900 text-sm font-medium">
-                {zoomedImageIndex + 1} / 6
-              </div>
-
-              {/* Right - Share Button */}
-              <button className="text-gray-600 hover:text-gray-900 transition-colors">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          {/* Main Image Display */}
-          <div className="w-full h-full flex items-center justify-center relative">
-             <div className="w-full h-full transition-all duration-500 ease-out">
-               {selectedProduct?.id === 'amethyst-ring' && zoomedImageIndex < 4 ? (
-                 <img 
-                   src={`/Images/amethyst-ring-${zoomedImageIndex + 1}.${zoomedImageIndex === 0 ? 'jpeg' : 'jpg'}`}
-                   alt={`${selectedProduct.name} - Zoomed Image ${zoomedImageIndex + 1}`}
-                   className="w-full h-full object-contain"
-                 />
-               ) : (
-                 <div className="text-[25rem]">
-                   {zoomedImageIndex === 0 ? (
-                     selectedProduct?.category === 'women' ? '💎' :
-                     selectedProduct?.category === 'men' ? '💍' : '🕎'
-                   ) : zoomedImageIndex === 1 ? '✨' :
-                     zoomedImageIndex === 2 ? '💫' :
-                     zoomedImageIndex === 3 ? '🌟' :
-                     zoomedImageIndex === 4 ? '💎' : '💍'}
-                 </div>
-               )}
-             </div>
-
-            {/* Navigation Arrows */}
-            <button 
-              onClick={() => setZoomedImageIndex(Math.max(0, zoomedImageIndex - 1))}
-              className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-600 hover:text-gray-900 transition-colors bg-white/90 backdrop-blur-sm rounded-full p-3 shadow-lg border border-gray-200 disabled:opacity-50"
-              disabled={zoomedImageIndex === 0}
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-
-            <button 
-              onClick={() => setZoomedImageIndex(Math.min(5, zoomedImageIndex + 1))}
-              className="absolute right-6 top-1/2 -translate-y-1/2 text-gray-600 hover:text-gray-900 transition-colors bg-white/90 backdrop-blur-sm rounded-full p-3 shadow-lg border border-gray-200 disabled:opacity-50"
-              disabled={zoomedImageIndex === 5}
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-
-          {/* Bottom Thumbnail Strip */}
-          <div className="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm border-t border-gray-200">
-            <div className="flex justify-center gap-3 p-4">
-              {[0, 1, 2, 3, 4, 5].map((index) => (
-                <button
-                  key={index}
-                  onClick={() => setZoomedImageIndex(index)}
-                  className={`flex-shrink-0 w-12 h-12 rounded-lg border-2 transition-all duration-200 ${
-                    zoomedImageIndex === index 
-                      ? 'border-gray-900' 
-                      : 'border-gray-300 hover:border-gray-500'
-                  }`}
-                >
-                   {selectedProduct?.id === 'amethyst-ring' && index < 4 ? (
-                     <img 
-                       src={`/Images/amethyst-ring-${index + 1}.${index === 0 ? 'jpeg' : 'jpg'}`}
-                       alt={`${selectedProduct.name} - Zoom Thumbnail ${index + 1}`}
-                       className="w-full h-full object-cover rounded"
-                     />
-                   ) : (
-                     <div className="w-full h-full flex items-center justify-center bg-gray-100 rounded">
-                       <div className="w-6 h-6 bg-gray-300 rounded"></div>
-                     </div>
-                   )}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Footer */}
       <footer className="bg-white border-t border-gray-200">
@@ -1034,6 +929,113 @@ function ProductsPageContent() {
         </div>
       </footer>
 
+      {/* Enhanced Image Zoom Modal - Tiffany Style */}
+      {showImageZoom && (
+        <div className="fixed inset-0 z-[60] bg-white flex items-center justify-center">
+          {/* Header Controls */}
+          <div className="absolute top-0 left-0 right-0 z-20 bg-white/90 backdrop-blur-sm border-b border-gray-200">
+            <div className="flex items-center justify-between px-6 py-4">
+              {/* Left - Back Button */}
+              <button 
+                onClick={handleCloseZoom}
+                className="flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+                <span className="text-sm font-medium">Back</span>
+              </button>
+
+              {/* Center - Image Counter */}
+              <div className="text-sm font-medium text-gray-900">
+                {zoomedImageIndex + 1} / {selectedProduct?.id === 'amethyst-ring' ? 4 : 6}
+              </div>
+
+              {/* Right - Close Button */}
+              <button 
+                onClick={handleCloseZoom}
+                className="text-gray-600 hover:text-gray-900 transition-colors"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          {/* Main Image Display */}
+          <div className="w-full h-full flex items-center justify-center relative">
+             <div className="w-full h-full transition-all duration-500 ease-out">
+               {selectedProduct?.id === 'amethyst-ring' && zoomedImageIndex < 4 ? (
+                 <img 
+                   src={`/Images/amethyst-ring-${zoomedImageIndex + 1}.${zoomedImageIndex === 0 ? 'jpeg' : 'jpg'}`}
+                   alt={`${selectedProduct.name} - Zoomed Image ${zoomedImageIndex + 1}`}
+                   className="w-full h-full object-contain"
+                 />
+               ) : (
+                 <div className="text-[25rem]">
+                   {zoomedImageIndex === 0 ? (
+                     selectedProduct?.category === 'women' ? '💎' :
+                     selectedProduct?.category === 'men' ? '💍' : '🕎'
+                   ) : zoomedImageIndex === 1 ? '✨' :
+                     zoomedImageIndex === 2 ? '💫' :
+                     zoomedImageIndex === 3 ? '🌟' :
+                     zoomedImageIndex === 4 ? '💎' : '💍'}
+                 </div>
+               )}
+             </div>
+
+            {/* Navigation Arrows */}
+            <button 
+              onClick={() => setZoomedImageIndex(Math.max(0, zoomedImageIndex - 1))}
+              className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-600 hover:text-gray-900 transition-colors bg-white/90 backdrop-blur-sm rounded-full p-3 shadow-lg border border-gray-200 disabled:opacity-50"
+              disabled={zoomedImageIndex === 0}
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button 
+              onClick={() => setZoomedImageIndex(Math.min((selectedProduct?.id === 'amethyst-ring' ? 3 : 5), zoomedImageIndex + 1))}
+              className="absolute right-6 top-1/2 -translate-y-1/2 text-gray-600 hover:text-gray-900 transition-colors bg-white/90 backdrop-blur-sm rounded-full p-3 shadow-lg border border-gray-200 disabled:opacity-50"
+              disabled={zoomedImageIndex === (selectedProduct?.id === 'amethyst-ring' ? 3 : 5)}
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Thumbnail Strip */}
+          <div className="absolute bottom-0 left-0 right-0 bg-white/90 backdrop-blur-sm border-t border-gray-200 p-4">
+            <div className="flex gap-3 justify-center overflow-x-auto scrollbar-hide">
+              {[0, 1, 2, 3, 4, 5].map((index) => (
+                <button
+                  key={index}
+                  onClick={() => setZoomedImageIndex(index)}
+                  className={`flex-shrink-0 w-12 h-12 rounded border-2 transition-all duration-200 ${
+                    zoomedImageIndex === index 
+                      ? 'border-gray-900' 
+                      : 'border-gray-300 hover:border-gray-500'
+                  }`}
+                >
+                   {selectedProduct?.id === 'amethyst-ring' && index < 4 ? (
+                     <img 
+                       src={`/Images/amethyst-ring-${index + 1}.${index === 0 ? 'jpeg' : 'jpg'}`}
+                       alt={`${selectedProduct.name} - Zoom Thumbnail ${index + 1}`}
+                       className="w-full h-full object-cover rounded"
+                     />
+                   ) : (
+                     <div className="w-full h-full flex items-center justify-center bg-gray-100 rounded">
+                       <div className="w-6 h-6 bg-gray-300 rounded"></div>
+                     </div>
+                   )}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
