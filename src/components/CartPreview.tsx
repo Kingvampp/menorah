@@ -80,7 +80,7 @@ const CartPreview: React.FC<CartPreviewProps> = ({ children }) => {
                 <div className="w-12 h-12 flex-shrink-0 bg-gray-50 rounded">
                   {item.id === 'amethyst-ring' ? (
                     <img 
-                      src="/Images/amethyst-ring-1.jpeg" 
+                      src="/images/amethyst-ring-1.jpeg" 
                       alt={item.name}
                       className="w-full h-full object-contain rounded"
                     />

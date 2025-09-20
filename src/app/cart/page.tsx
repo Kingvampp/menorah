@@ -44,7 +44,7 @@ export default function CartPage() {
                   <Link href={`/products?product=${item.id}`} className="w-20 h-20 flex-shrink-0 bg-gray-50 rounded hover:opacity-80 transition-opacity">
                     {item.id === 'amethyst-ring' ? (
                       <img 
-                        src="/Images/amethyst-ring-1.jpeg" 
+                        src="/images/amethyst-ring-1.jpeg" 
                         alt={item.name}
                         className="w-full h-full object-contain rounded"
                       />

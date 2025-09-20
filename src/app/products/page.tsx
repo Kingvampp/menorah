@@ -61,7 +61,7 @@ function ProductsPageContent() {
       name: "Amethyst Centerpiece Ring",
       price: "$2,850",
       description: "Amethyst centerpiece ring with diamond side accents 24k gold",
-      image: "/Images/amethyst-ring-1.jpeg",
+      image: "/images/amethyst-ring-1.jpeg",
       features: ["24k Gold", "Amethyst Centerpiece", "Diamond Side Accents"],
       category: "women"
     },
@@ -635,7 +635,7 @@ function ProductsPageContent() {
                       <div className="w-full h-full flex items-center justify-center bg-gray-50">
                         {product.id === 'amethyst-ring' ? (
                           <img 
-                            src="/Images/amethyst-ring-1.jpeg" 
+                            src="/images/amethyst-ring-1.jpeg" 
                             alt={product.name}
                             className="w-full h-full object-cover"
                           />
@@ -653,7 +653,7 @@ function ProductsPageContent() {
                       <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-amber-50 to-amber-100">
                         {product.id === 'amethyst-ring' ? (
                           <img 
-                            src="/Images/amethyst-ring-2.jpg" 
+                            src="/images/amethyst-ring-2.jpg" 
                             alt={product.name}
                             className="w-full h-full object-cover"
                           />
@@ -765,7 +765,7 @@ function ProductsPageContent() {
                            name: selectedProduct.name,
                            price: selectedProduct.price,
                            description: selectedProduct.description,
-                           image: selectedProduct.id === 'amethyst-ring' ? '/Images/amethyst-ring-1.jpeg' : selectedProduct.image
+                            image: selectedProduct.id === 'amethyst-ring' ? '/images/amethyst-ring-1.jpeg' : selectedProduct.image
                          });
                          
                          // Show animation
@@ -824,7 +824,7 @@ function ProductsPageContent() {
                   <div className="w-full h-full transition-transform duration-300 group-hover:scale-105">
                     {selectedProduct.id === 'amethyst-ring' ? (
                       <img 
-                        src={`/Images/amethyst-ring-${currentImageIndex + 1}.${currentImageIndex === 0 ? 'jpeg' : 'jpg'}`}
+                        src={`/images/amethyst-ring-${currentImageIndex + 1}.${currentImageIndex === 0 ? 'jpeg' : 'jpg'}`}
                         alt={`${selectedProduct.name} - Image ${currentImageIndex + 1}`}
                         className="w-full h-full object-contain"
                       />
@@ -873,7 +873,7 @@ function ProductsPageContent() {
                     >
                        {selectedProduct.id === 'amethyst-ring' && index < 4 ? (
                          <img 
-                           src={`/Images/amethyst-ring-${index + 1}.${index === 0 ? 'jpeg' : 'jpg'}`}
+                           src={`/images/amethyst-ring-${index + 1}.${index === 0 ? 'jpeg' : 'jpg'}`}
                            alt={`${selectedProduct.name} - Thumbnail ${index + 1}`}
                            className="w-full h-full object-cover rounded"
                          />
@@ -917,7 +917,7 @@ function ProductsPageContent() {
                          <div className="w-full h-full flex items-center justify-center bg-gray-50">
                            {product.id === 'amethyst-ring' ? (
                              <img 
-                               src="/Images/amethyst-ring-1.jpeg" 
+                               src="/images/amethyst-ring-1.jpeg" 
                                alt={product.name}
                                className="w-full h-full object-contain"
                              />
@@ -1033,7 +1033,7 @@ function ProductsPageContent() {
              <div className="w-full h-full transition-all duration-500 ease-out">
                {selectedProduct?.id === 'amethyst-ring' && zoomedImageIndex < 4 ? (
                  <img 
-                   src={`/Images/amethyst-ring-${zoomedImageIndex + 1}.${zoomedImageIndex === 0 ? 'jpeg' : 'jpg'}`}
+                   src={`/images/amethyst-ring-${zoomedImageIndex + 1}.${zoomedImageIndex === 0 ? 'jpeg' : 'jpg'}`}
                    alt={`${selectedProduct.name} - Zoomed Image ${zoomedImageIndex + 1}`}
                    className="w-full h-full object-contain"
                  />
@@ -1087,7 +1087,7 @@ function ProductsPageContent() {
                 >
                    {selectedProduct?.id === 'amethyst-ring' && index < 4 ? (
                      <img 
-                       src={`/Images/amethyst-ring-${index + 1}.${index === 0 ? 'jpeg' : 'jpg'}`}
+                       src={`/images/amethyst-ring-${index + 1}.${index === 0 ? 'jpeg' : 'jpg'}`}
                        alt={`${selectedProduct.name} - Zoom Thumbnail ${index + 1}`}
                        className="w-full h-full object-cover rounded"
                      />
