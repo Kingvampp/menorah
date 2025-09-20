@@ -699,10 +699,10 @@ function ProductsPageContent() {
             </button>
           </div>
 
-           {/* Main Content - Desktop 2-Column Layout */}
+           {/* Main Content - Mobile: Image Top, Desktop: 2-Column Layout */}
            <div className="flex flex-col lg:flex-row max-w-6xl mx-auto">
-             {/* Left Column - Product Information */}
-             <div className="lg:w-1/2 lg:pr-8">
+             {/* Mobile: Image First, Desktop: Product Information Left */}
+             <div className="lg:w-1/2 lg:pr-8 order-2 lg:order-1">
                {/* Product Details Section */}
                <div className="px-4 py-6 space-y-6 text-center lg:text-left">
                  {/* Product Title & Price */}
@@ -769,8 +769,8 @@ function ProductsPageContent() {
                </div>
              </div>
 
-             {/* Right Column - Product Images */}
-             <div className="lg:w-1/2 lg:pl-8">
+             {/* Mobile: Image First, Desktop: Product Images Right */}
+             <div className="lg:w-1/2 lg:pl-8 order-1 lg:order-2">
                {/* Product Image Section */}
                <div className="relative bg-white">
                  {/* Main Image Display */}
