@@ -845,7 +845,8 @@ function ProductsPageContent() {
                 </div>
               </div>
             </div>
-
+             </div>
+           </div>
           </div>
         </div>
       )}
@@ -1032,6 +1033,7 @@ function ProductsPageContent() {
           </div>
         </div>
       </footer>
+
     </div>
   );
 }
