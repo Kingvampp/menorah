@@ -24,8 +24,18 @@ function ProductsPageContent() {
 
   useEffect(() => {
     const category = searchParams.get('category');
+    const product = searchParams.get('product');
+    
     if (category) {
       setSelectedCategory(category);
+    }
+    
+    if (product) {
+      const foundProduct = products.find(p => p.id === product);
+      if (foundProduct) {
+        setSelectedProduct(foundProduct);
+        setShowProductPopup(true);
+      }
     }
   }, [searchParams]);
 
@@ -751,7 +761,7 @@ function ProductsPageContent() {
                      onClick={() => {
                        if (selectedProduct) {
                          addToCart({
-                           id: selectedProduct.id,
+                           id: String(selectedProduct.id),
                            name: selectedProduct.name,
                            price: selectedProduct.price,
                            description: selectedProduct.description,

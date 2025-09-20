@@ -40,8 +40,8 @@ export default function CartPage() {
             <div className="lg:col-span-2 space-y-6">
               {cartItems.map((item) => (
                 <div key={item.id} className="flex items-center gap-4 p-4 border border-gray-200 rounded-lg">
-                  {/* Product Image */}
-                  <div className="w-20 h-20 flex-shrink-0 bg-gray-50 rounded">
+                  {/* Product Image - Clickable */}
+                  <Link href={`/products?product=${item.id}`} className="w-20 h-20 flex-shrink-0 bg-gray-50 rounded hover:opacity-80 transition-opacity">
                     {item.id === 'amethyst-ring' ? (
                       <img 
                         src="/Images/amethyst-ring-1.jpeg" 
@@ -54,14 +54,14 @@ export default function CartPage() {
                          item.name.includes('Men') ? '💍' : '🕎'}
                       </div>
                     )}
-                  </div>
+                  </Link>
 
-                  {/* Product Info */}
-                  <div className="flex-1">
+                  {/* Product Info - Clickable */}
+                  <Link href={`/products?product=${item.id}`} className="flex-1 hover:opacity-80 transition-opacity">
                     <h3 className="text-lg font-light text-black mb-1">{item.name}</h3>
                     <p className="text-sm text-black mb-2">{item.description}</p>
                     <p className="text-lg font-light text-black">{item.price}</p>
-                  </div>
+                  </Link>
 
                   {/* Quantity Controls */}
                   <div className="flex items-center gap-3">
