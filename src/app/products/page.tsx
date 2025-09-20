@@ -7,10 +7,11 @@ import { useCart } from '@/contexts/CartContext';
 import { useSearchParams } from 'next/navigation';
 import Menorah3D from '@/components/Ring3D';
 import Navbar from '@/components/Navbar';
+import CartPreview from '@/components/CartPreview';
 
 function ProductsPageContent() {
   const searchParams = useSearchParams();
-  const { addToCart } = useCart();
+  const { addToCart, getTotalItems } = useCart();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [showSubCategories, setShowSubCategories] = useState(false);
   const [currentMainCategory, setCurrentMainCategory] = useState('all');
@@ -19,6 +20,7 @@ function ProductsPageContent() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showImageZoom, setShowImageZoom] = useState(false);
   const [zoomedImageIndex, setZoomedImageIndex] = useState(0);
+  const [addedToCart, setAddedToCart] = useState(false);
 
   useEffect(() => {
     const category = searchParams.get('category');
@@ -693,12 +695,19 @@ function ProductsPageContent() {
               {selectedProduct.name}
             </h1>
 
-            {/* Right - Share Button */}
-            <button className="text-gray-600 hover:text-gray-900 transition-colors">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
-              </svg>
-            </button>
+            {/* Right - Cart Icon with Preview */}
+            <CartPreview>
+              <Link href="/cart" className="relative p-2 text-gray-600 hover:text-gray-900 transition-colors duration-300">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 12H6L5 9z" />
+                </svg>
+                {getTotalItems() > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                    {getTotalItems()}
+                  </span>
+                )}
+              </Link>
+            </CartPreview>
           </div>
 
            {/* Main Content - Mobile: Image Top, Desktop: 2-Column Layout */}
@@ -748,11 +757,19 @@ function ProductsPageContent() {
                            description: selectedProduct.description,
                            image: selectedProduct.id === 'amethyst-ring' ? '/Images/amethyst-ring-1.jpeg' : selectedProduct.image
                          });
+                         
+                         // Show animation
+                         setAddedToCart(true);
+                         setTimeout(() => setAddedToCart(false), 2000);
                        }
                      }}
-                     className="w-full lg:w-auto lg:min-w-[200px] bg-black text-white py-4 px-6 text-sm font-medium tracking-widest uppercase hover:bg-gray-800 transition-colors"
+                     className={`w-full lg:w-auto lg:min-w-[200px] py-4 px-6 text-sm font-medium tracking-widest uppercase transition-all duration-300 ${
+                       addedToCart 
+                         ? 'bg-green-600 text-white transform scale-105' 
+                         : 'bg-black text-white hover:bg-gray-800'
+                     }`}
                    >
-                     Add to Cart
+                     {addedToCart ? '✓ Added to Cart!' : 'Add to Cart'}
                    </button>
                    <button className="w-full lg:w-auto lg:min-w-[200px] border border-gray-300 text-gray-900 py-4 px-6 text-sm font-medium tracking-widest uppercase hover:bg-gray-50 transition-colors">
                      Contact Your Advisor
@@ -985,12 +1002,19 @@ function ProductsPageContent() {
                 {zoomedImageIndex + 1} / 6
               </div>
 
-              {/* Right - Share Button */}
-              <button className="text-gray-600 hover:text-gray-900 transition-colors">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z" />
-                </svg>
-              </button>
+              {/* Right - Cart Icon with Preview */}
+              <CartPreview>
+                <Link href="/cart" className="relative p-2 text-gray-600 hover:text-gray-900 transition-colors duration-300">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 12H6L5 9z" />
+                  </svg>
+                  {getTotalItems() > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                      {getTotalItems()}
+                    </span>
+                  )}
+                </Link>
+              </CartPreview>
             </div>
           </div>
 

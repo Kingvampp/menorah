@@ -5,16 +5,17 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 
 export default function CartPage() {
-  const { cartItems, removeFromCart, updateQuantity, getTotalPrice, clearCart } = useCart();
+  const { cartItems, removeFromCart, updateQuantity, getTotalPrice } = useCart();
 
-  if (cartItems.length === 0) {
+  // Safety check to prevent undefined errors
+  if (!cartItems || cartItems.length === 0) {
     return (
       <div className="min-h-screen bg-white">
         <Navbar />
-        <div className="pt-32 pb-16">
+        <div className="pt-40 pb-16">
           <div className="max-w-4xl mx-auto px-4 text-center">
-            <h1 className="text-3xl font-light text-gray-900 mb-4">Your Cart</h1>
-            <p className="text-gray-600 mb-8">Your cart is empty</p>
+            <h1 className="text-3xl font-light text-black mb-4">Your Cart</h1>
+            <p className="text-black mb-8">Your cart is empty</p>
             <Link 
               href="/products"
               className="inline-block bg-black text-white px-8 py-3 text-sm font-medium tracking-widest uppercase hover:bg-gray-800 transition-colors"
@@ -30,9 +31,9 @@ export default function CartPage() {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      <div className="pt-32 pb-16">
+      <div className="pt-40 pb-16">
         <div className="max-w-4xl mx-auto px-4">
-          <h1 className="text-3xl font-light text-gray-900 mb-8">Your Cart</h1>
+          <h1 className="text-3xl font-light text-black mb-8">Your Cart</h1>
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Cart Items */}
@@ -57,23 +58,23 @@ export default function CartPage() {
 
                   {/* Product Info */}
                   <div className="flex-1">
-                    <h3 className="text-lg font-light text-gray-900 mb-1">{item.name}</h3>
-                    <p className="text-sm text-gray-600 mb-2">{item.description}</p>
-                    <p className="text-lg font-light text-gray-900">{item.price}</p>
+                    <h3 className="text-lg font-light text-black mb-1">{item.name}</h3>
+                    <p className="text-sm text-black mb-2">{item.description}</p>
+                    <p className="text-lg font-light text-black">{item.price}</p>
                   </div>
 
                   {/* Quantity Controls */}
                   <div className="flex items-center gap-3">
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                      className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded hover:bg-gray-50"
+                      className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded hover:bg-gray-50 text-black font-medium"
                     >
                       -
                     </button>
-                    <span className="text-lg font-light text-gray-900 min-w-[30px] text-center">{item.quantity}</span>
+                    <span className="text-lg font-light text-black min-w-[30px] text-center">{item.quantity}</span>
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                      className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded hover:bg-gray-50"
+                      className="w-8 h-8 flex items-center justify-center border border-gray-300 rounded hover:bg-gray-50 text-black font-medium"
                     >
                       +
                     </button>
@@ -95,23 +96,23 @@ export default function CartPage() {
             {/* Order Summary */}
             <div className="lg:col-span-1">
               <div className="bg-gray-50 p-6 rounded-lg">
-                <h2 className="text-xl font-light text-gray-900 mb-4">Order Summary</h2>
+                <h2 className="text-xl font-light text-black mb-4">Order Summary</h2>
                 
                 <div className="space-y-3 mb-6">
-                  <div className="flex justify-between text-sm">
+                  <div className="flex justify-between text-sm text-black">
                     <span>Subtotal</span>
                     <span>${getTotalPrice().toFixed(2)}</span>
                   </div>
-                  <div className="flex justify-between text-sm">
+                  <div className="flex justify-between text-sm text-black">
                     <span>Shipping</span>
                     <span>Free</span>
                   </div>
-                  <div className="flex justify-between text-sm">
+                  <div className="flex justify-between text-sm text-black">
                     <span>Tax</span>
                     <span>Calculated at checkout</span>
                   </div>
                   <div className="border-t border-gray-300 pt-3">
-                    <div className="flex justify-between text-lg font-medium">
+                    <div className="flex justify-between text-lg font-medium text-black">
                       <span>Total</span>
                       <span>${getTotalPrice().toFixed(2)}</span>
                     </div>
@@ -123,15 +124,17 @@ export default function CartPage() {
                 </button>
 
                 <button 
-                  onClick={clearCart}
-                  className="w-full border border-gray-300 text-gray-900 py-3 px-6 text-sm font-medium tracking-widest uppercase hover:bg-gray-50 transition-colors"
+                  onClick={() => {
+                    cartItems.forEach(item => removeFromCart(item.id));
+                  }}
+                  className="w-full border border-gray-300 text-black py-3 px-6 text-sm font-medium tracking-widest uppercase hover:bg-gray-50 transition-colors"
                 >
                   Clear Cart
                 </button>
 
                 <Link 
                   href="/products"
-                  className="block text-center text-sm text-gray-600 hover:text-gray-900 transition-colors mt-4"
+                  className="block text-center text-sm text-black hover:text-gray-600 transition-colors mt-4"
                 >
                   Continue Shopping
                 </Link>

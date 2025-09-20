@@ -101,14 +101,14 @@ const CartPreview: React.FC<CartPreviewProps> = ({ children }) => {
                   <div className="flex items-center gap-2 mt-1">
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                      className="w-5 h-5 flex items-center justify-center text-xs border border-gray-300 rounded hover:bg-gray-50"
+                      className="w-5 h-5 flex items-center justify-center text-xs border border-gray-300 rounded hover:bg-gray-50 text-black font-medium"
                     >
                       -
                     </button>
                     <span className="text-xs text-gray-900 min-w-[20px] text-center">{item.quantity}</span>
                     <button
                       onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                      className="w-5 h-5 flex items-center justify-center text-xs border border-gray-300 rounded hover:bg-gray-50"
+                      className="w-5 h-5 flex items-center justify-center text-xs border border-gray-300 rounded hover:bg-gray-50 text-black font-medium"
                     >
                       +
                     </button>
