@@ -670,7 +670,7 @@ function ProductsPageContent() {
 
 
 
-      {/* Tiffany-Style Product Popup - Mobile Layout */}
+      {/* Tiffany-Style Product Popup - Scrollable Layout */}
       {showProductPopup && selectedProduct && (
         <div className="fixed inset-0 z-50 bg-white overflow-y-auto">
           {/* Header with Navigation */}
@@ -845,6 +845,104 @@ function ProductsPageContent() {
                 </div>
               </div>
              </div>
+             </div>
+           </div>
+
+           {/* You May Also Like Section */}
+           <div className="border-t border-gray-200 mt-16 pt-12">
+             <div className="max-w-6xl mx-auto px-4">
+               <h3 className="text-2xl font-light text-gray-900 tracking-wide text-center mb-8">
+                 You May Also Like
+               </h3>
+               
+               {/* Carousel Container */}
+               <div className="relative">
+                 {/* Carousel Items */}
+                 <div className="flex gap-6 overflow-x-auto scrollbar-hide pb-4" style={{ scrollSnapType: 'x mandatory' }}>
+                   {products.filter(product => product.id !== selectedProduct.id).slice(0, 6).map((product) => (
+                     <div 
+                       key={product.id} 
+                       className="flex-shrink-0 w-64 cursor-pointer group"
+                       onClick={() => {
+                         setSelectedProduct(product);
+                         setCurrentImageIndex(0);
+                         setZoomedImageIndex(0);
+                       }}
+                       style={{ scrollSnapAlign: 'start' }}
+                     >
+                       {/* Product Image */}
+                       <div className="relative aspect-square mb-4 overflow-hidden bg-white rounded-lg">
+                         <div className="w-full h-full flex items-center justify-center bg-gray-50">
+                           {product.id === 'amethyst-ring' ? (
+                             <img 
+                               src="/Images/amethyst-ring-1.jpeg" 
+                               alt={product.name}
+                               className="w-full h-full object-contain"
+                             />
+                           ) : (
+                             <div className="text-6xl">
+                               {product.category === 'women' ? '💎' :
+                                product.category === 'men' ? '💍' : '🕎'}
+                             </div>
+                           )}
+                         </div>
+                         
+                         {/* Hover Overlay */}
+                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300 flex items-center justify-center">
+                           <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                             <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                             </svg>
+                           </div>
+                         </div>
+                       </div>
+
+                       {/* Product Info */}
+                       <div className="text-center space-y-2">
+                         <h4 className="text-sm font-light text-gray-900 tracking-wide uppercase">
+                           {product.name}
+                         </h4>
+                         <p className="text-xs text-gray-600 font-light">
+                           {product.description.split('.')[0]}
+                         </p>
+                         <p className="text-sm font-light text-gray-900 tracking-wide">
+                           {product.price}
+                         </p>
+                       </div>
+                     </div>
+                   ))}
+                 </div>
+
+                 {/* Navigation Arrows */}
+                 <button 
+                   className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 bg-white/90 backdrop-blur-sm rounded-full p-3 shadow-lg border border-gray-200 hover:bg-white transition-colors"
+                   onClick={() => {
+                     const container = document.querySelector('.overflow-x-auto');
+                     if (container) {
+                       container.scrollBy({ left: -280, behavior: 'smooth' });
+                     }
+                   }}
+                 >
+                   <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                   </svg>
+                 </button>
+
+                 <button 
+                   className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 bg-white/90 backdrop-blur-sm rounded-full p-3 shadow-lg border border-gray-200 hover:bg-white transition-colors"
+                   onClick={() => {
+                     const container = document.querySelector('.overflow-x-auto');
+                     if (container) {
+                       container.scrollBy({ left: 280, behavior: 'smooth' });
+                     }
+                   }}
+                 >
+                   <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                   </svg>
+                 </button>
+               </div>
              </div>
            </div>
         </div>
