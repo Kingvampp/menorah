@@ -714,7 +714,7 @@ function ProductsPageContent() {
                       <img 
                         src={`/Images/amethyst-ring-${currentImageIndex + 1}.${currentImageIndex === 0 ? 'jpeg' : 'jpg'}`}
                         alt={`${selectedProduct.name} - Image ${currentImageIndex + 1}`}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain mx-auto"
                       />
                     ) : (
                       <div className="text-[8rem]">
@@ -763,7 +763,7 @@ function ProductsPageContent() {
                          <img 
                            src={`/Images/amethyst-ring-${index + 1}.${index === 0 ? 'jpeg' : 'jpg'}`}
                            alt={`${selectedProduct.name} - Thumbnail ${index + 1}`}
-                           className="w-full h-full object-cover rounded"
+                           className="w-full h-full object-contain mx-auto rounded"
                          />
                        ) : (
                          <div className="w-full h-full flex items-center justify-center bg-gray-100 rounded">
@@ -930,7 +930,7 @@ function ProductsPageContent() {
                      <img 
                        src={`/Images/amethyst-ring-${index + 1}.${index === 0 ? 'jpeg' : 'jpg'}`}
                        alt={`${selectedProduct.name} - Zoom Thumbnail ${index + 1}`}
-                       className="w-full h-full object-cover rounded"
+                       className="w-full h-full object-contain mx-auto rounded"
                      />
                    ) : (
                      <div className="w-full h-full flex items-center justify-center bg-gray-100 rounded">

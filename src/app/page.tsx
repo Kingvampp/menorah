@@ -146,7 +146,7 @@ export default function Home() {
           </div>
 
           {/* Right side - 3D Menorah */}
-          <div className="relative h-[500px] sm:h-[600px] lg:h-[800px] w-full overflow-visible order-1 lg:order-2 flex justify-center">
+          <div className="relative h-[350px] sm:h-[450px] md:h-[500px] lg:h-[600px] xl:h-[800px] w-full overflow-visible order-1 lg:order-2 flex justify-center">
             <Canvas 
               ref={(canvas) => {
                 if (canvas) {
@@ -173,7 +173,7 @@ export default function Home() {
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
           {/* Left side - 3D Earring */}
           <div 
-            className="relative h-[500px] sm:h-[600px] lg:h-[800px] w-full overflow-visible transition-transform duration-1000 ease-out order-1 lg:order-1 flex justify-center"
+            className="relative h-[350px] sm:h-[450px] md:h-[500px] lg:h-[600px] xl:h-[800px] w-full overflow-visible transition-transform duration-1000 ease-out order-1 lg:order-1 flex justify-center"
             style={{ transform: `translateX(${earringX}rem)` }}
           >
             <Canvas 
@@ -232,7 +232,7 @@ export default function Home() {
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
           {/* Left side - 3D Model */}
           <div 
-            className="relative h-[500px] sm:h-[600px] lg:h-[800px] w-full overflow-visible transition-transform duration-1000 ease-out order-1 lg:order-1 flex justify-center"
+            className="relative h-[350px] sm:h-[450px] md:h-[500px] lg:h-[600px] xl:h-[800px] w-full overflow-visible transition-transform duration-1000 ease-out order-1 lg:order-1 flex justify-center"
             style={{ transform: `translateX(${menorahX}rem)` }}
           >
             <Canvas 
