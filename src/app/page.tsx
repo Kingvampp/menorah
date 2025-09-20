@@ -46,23 +46,23 @@ export default function Home() {
          } else if (progress <= 0.5) {
            // Stay visible: Keep at x=0 from 33% to 50% scroll
            setSecondPageTextX(0);
-         } else if (progress <= 0.7) {
-           // Slide out: Move from x=0 to x=30 between 50% and 70% scroll (increased for mobile)
-           const slideOutProgress = (progress - 0.5) / 0.2; // Scale from 0-1 between 50% and 70%
+         } else if (progress <= 0.6) {
+           // Slide out: Move from x=0 to x=30 between 50% and 60% scroll (adjusted for earlier third page)
+           const slideOutProgress = (progress - 0.5) / 0.1; // Scale from 0-1 between 50% and 60%
            const secondPageSlide = 0 + (slideOutProgress * 30); // Move from 0 to 30 (increased for mobile)
            setSecondPageTextX(secondPageSlide);
          }
        }
 
-       // Third page text slides in from right - starts after second page
-       if (progress > 0.5) { // Start when second page starts sliding out
-         if (progress <= 0.7) {
-           // Slide in: Scale from 0.5 to 0.7 for the animation
-           const thirdPageProgress = Math.min((progress - 0.5) / 0.2, 1); // Scale to 0-1 between 50% and 70%
+       // Third page text slides in from right - starts earlier for mobile
+       if (progress > 0.4) { // Start earlier at 40% instead of 50%
+         if (progress <= 0.6) {
+           // Slide in: Scale from 0.4 to 0.6 for the animation
+           const thirdPageProgress = Math.min((progress - 0.4) / 0.2, 1); // Scale to 0-1 between 40% and 60%
            const thirdPageSlide = 30 - (thirdPageProgress * 30); // Move from 30 to 0 (increased for mobile)
            setThirdPageTextX(thirdPageSlide);
          } else {
-           // Stay visible: Keep at x=0 from 70% onwards (no slide out)
+           // Stay visible: Keep at x=0 from 60% onwards (no slide out)
            setThirdPageTextX(0);
          }
        }
@@ -77,23 +77,23 @@ export default function Home() {
          } else if (progress <= 0.5) {
            // Stay visible: Keep at x=0 from 33% to 50% scroll
            setEarringX(0);
-         } else if (progress <= 0.7) {
-           // Slide out: Move from x=0 to x=-30 between 50% and 70% scroll (increased for mobile)
-           const slideOutProgress = (progress - 0.5) / 0.2; // Scale from 0-1 between 50% and 70%
+         } else if (progress <= 0.6) {
+           // Slide out: Move from x=0 to x=-30 between 50% and 60% scroll (adjusted for earlier third page)
+           const slideOutProgress = (progress - 0.5) / 0.1; // Scale from 0-1 between 50% and 60%
            const earringSlide = 0 - (slideOutProgress * 30); // Move from 0 to -30 (increased for mobile)
            setEarringX(earringSlide);
          }
        }
 
-       // Menorah animation for third page - follows same pattern as third page text but from left side
-       if (progress > 0.5) { // Start when second page starts sliding out
-         if (progress <= 0.7) {
-           // Slide in: Scale from 0.5 to 0.7 for the animation
-           const menorahProgress = Math.min((progress - 0.5) / 0.2, 1); // Scale to 0-1 between 50% and 70%
+       // Menorah animation for third page - starts earlier for mobile
+       if (progress > 0.4) { // Start earlier at 40% instead of 50%
+         if (progress <= 0.6) {
+           // Slide in: Scale from 0.4 to 0.6 for the animation
+           const menorahProgress = Math.min((progress - 0.4) / 0.2, 1); // Scale to 0-1 between 40% and 60%
            const menorahSlide = -30 + (menorahProgress * 30); // Move from -30 to 0 (increased for mobile)
            setMenorahX(menorahSlide);
          } else {
-           // Stay visible: Keep at x=0 from 70% onwards (no slide out)
+           // Stay visible: Keep at x=0 from 60% onwards (no slide out)
            setMenorahX(0);
          }
        }
@@ -146,7 +146,7 @@ export default function Home() {
           </div>
 
           {/* Right side - 3D Menorah */}
-          <div className="relative h-[350px] sm:h-[450px] md:h-[500px] lg:h-[600px] xl:h-[800px] w-full overflow-visible order-1 lg:order-2 flex justify-center">
+          <div className="relative h-[500px] sm:h-[600px] lg:h-[800px] w-full overflow-visible order-1 lg:order-2 flex justify-center">
             <Canvas 
               ref={(canvas) => {
                 if (canvas) {
@@ -173,7 +173,7 @@ export default function Home() {
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
           {/* Left side - 3D Earring */}
           <div 
-            className="relative h-[350px] sm:h-[450px] md:h-[500px] lg:h-[600px] xl:h-[800px] w-full overflow-visible transition-transform duration-1000 ease-out order-1 lg:order-1 flex justify-center"
+            className="relative h-[500px] sm:h-[600px] lg:h-[800px] w-full overflow-visible transition-transform duration-1000 ease-out order-1 lg:order-1 flex justify-center"
             style={{ transform: `translateX(${earringX}rem)` }}
           >
             <Canvas 
@@ -232,7 +232,7 @@ export default function Home() {
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
           {/* Left side - 3D Model */}
           <div 
-            className="relative h-[350px] sm:h-[450px] md:h-[500px] lg:h-[600px] xl:h-[800px] w-full overflow-visible transition-transform duration-1000 ease-out order-1 lg:order-1 flex justify-center"
+            className="relative h-[500px] sm:h-[600px] lg:h-[800px] w-full overflow-visible transition-transform duration-1000 ease-out order-1 lg:order-1 flex justify-center"
             style={{ transform: `translateX(${menorahX}rem)` }}
           >
             <Canvas 
