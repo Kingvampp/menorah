@@ -18,57 +18,6 @@ function ProductsPageContent() {
   const [showImageZoom, setShowImageZoom] = useState(false);
   const [zoomedImageIndex, setZoomedImageIndex] = useState(0);
 
-  // Function to get image path for a product and image index
-  const getProductImagePath = (productId: string | number, imageIndex: number) => {
-    const id = typeof productId === 'string' ? productId : productId.toString();
-    return `/images/products/${id}_${imageIndex + 1}.jpg`;
-  };
-
-  // Function to get fallback emoji for a product and image index
-  const getProductEmoji = (productId: string | number, imageIndex: number, category: string) => {
-    if (imageIndex === 0) {
-      return category === 'women' ? '💎' : category === 'men' ? '💍' : '🕎';
-    } else if (imageIndex === 1) {
-      return '✨';
-    } else if (imageIndex === 2) {
-      return '💫';
-    } else if (imageIndex === 3) {
-      return '🌟';
-    } else if (imageIndex === 4) {
-      return '💎';
-    } else {
-      return '💍';
-    }
-  };
-
-  // Component for product images with fallback
-  const ProductImage = ({ productId, imageIndex, category, size = 'text-6xl' }: { 
-    productId: string | number, 
-    imageIndex: number, 
-    category: string, 
-    size?: string 
-  }) => {
-    const [imageError, setImageError] = useState(false);
-    const imagePath = getProductImagePath(productId, imageIndex);
-    const emoji = getProductEmoji(productId, imageIndex, category);
-
-    return (
-      <div className="w-full h-full flex items-center justify-center">
-        {!imageError ? (
-          <img
-            src={imagePath}
-            alt={`Product ${productId} image ${imageIndex + 1}`}
-            className="w-full h-full object-cover"
-            onError={() => setImageError(true)}
-            onLoad={() => setImageError(false)}
-          />
-        ) : (
-          <div className={size}>{emoji}</div>
-        )}
-      </div>
-    );
-  };
-
   useEffect(() => {
     const category = searchParams.get('category');
     if (category) {
@@ -94,13 +43,13 @@ function ProductsPageContent() {
 
   const products = [
     {
-      id: "menorah-ring",
-      name: "Classic Diamond Menorah",
+      id: "amethyst-ring",
+      name: "Amethyst Centerpiece Ring",
       price: "$2,850",
-      description: "Traditional nine-branch menorah with brilliant-cut diamonds and 18k gold",
-      image: "/api/placeholder/400/400",
-      features: ["18k Gold", "Brilliant Cut Diamonds", "Handcrafted"],
-      category: "unisex"
+      description: "Amethyst centerpiece ring with diamond side accents 24k gold",
+      image: "/Images/amethyst-ring-1.jpeg",
+      features: ["24k Gold", "Amethyst Centerpiece", "Diamond Side Accents"],
+      category: "women"
     },
     {
       id: "elegant-earrings",
@@ -667,29 +616,38 @@ function ProductsPageContent() {
               <div key={product.id} className="group cursor-pointer" onClick={() => handleProductClick(product)}>
                 {/* Product Image Container */}
                 <div className="relative aspect-[4/3] md:aspect-[3/2] lg:aspect-square max-h-64 lg:max-h-80 mb-4 overflow-hidden bg-white">
-                  {/* Primary Image */}
-                  <div className="absolute inset-0 transition-opacity duration-500 group-hover:opacity-0">
-                    <div className="w-full h-full bg-gray-50">
-                      <ProductImage 
-                        productId={product.id} 
-                        imageIndex={0} 
-                        category={product.category}
-                        size="text-6xl md:text-7xl lg:text-8xl"
-                      />
+                    {/* Primary Image */}
+                    <div className="absolute inset-0 transition-opacity duration-500 group-hover:opacity-0">
+                      <div className="w-full h-full flex items-center justify-center bg-gray-50">
+                        {product.id === 'amethyst-ring' ? (
+                          <img 
+                            src="/Images/amethyst-ring-1.jpeg" 
+                            alt={product.name}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <div className="text-6xl md:text-7xl lg:text-8xl">
+                            {product.category === 'women' ? '💎' :
+                             product.category === 'men' ? '💍' : '🕎'}
+                          </div>
+                        )}
+                      </div>
                     </div>
+                    
+                    {/* Secondary Image (Hover) */}
+                    <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                      <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-amber-50 to-amber-100">
+                        {product.id === 'amethyst-ring' ? (
+                          <img 
+                            src="/Images/amethyst-ring-2.jpg" 
+                            alt={product.name}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <div className="text-6xl md:text-7xl lg:text-8xl">✨</div>
+                        )}
+                      </div>
                   </div>
-                  
-                  {/* Secondary Image (Hover) */}
-                  <div className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                    <div className="w-full h-full bg-gradient-to-br from-amber-50 to-amber-100">
-                      <ProductImage 
-                        productId={product.id} 
-                        imageIndex={1} 
-                        category={product.category}
-                        size="text-6xl md:text-7xl lg:text-8xl"
-                      />
-                    </div>
-                </div>
                 </div>
 
                 {/* Product Information - Tiffany Style */}
@@ -752,18 +710,29 @@ function ProductsPageContent() {
                   onClick={() => handleImageZoom(currentImageIndex)}
                 >
                   <div className="w-full h-full transition-transform duration-300 group-hover:scale-105">
-                    <ProductImage 
-                      productId={selectedProduct.id} 
-                      imageIndex={currentImageIndex} 
-                      category={selectedProduct.category}
-                      size="text-[8rem]"
-                    />
+                    {selectedProduct.id === 'amethyst-ring' ? (
+                      <img 
+                        src={`/Images/amethyst-ring-${currentImageIndex + 1}.${currentImageIndex === 0 ? 'jpeg' : 'jpg'}`}
+                        alt={`${selectedProduct.name} - Image ${currentImageIndex + 1}`}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="text-[8rem]">
+                        {currentImageIndex === 0 ? (
+                          selectedProduct.category === 'women' ? '💎' :
+                          selectedProduct.category === 'men' ? '💍' : '🕎'
+                        ) : currentImageIndex === 1 ? '✨' :
+                          currentImageIndex === 2 ? '💫' :
+                          currentImageIndex === 3 ? '🌟' :
+                          currentImageIndex === 4 ? '💎' : '💍'}
+                      </div>
+                    )}
                   </div>
                 </div>
 
                 {/* Image Counter */}
                 <div className="absolute bottom-4 left-4 bg-black/70 text-white px-2 py-1 rounded text-xs">
-                  {currentImageIndex + 1} / 6
+                  {currentImageIndex + 1} / {selectedProduct.id === 'amethyst-ring' ? 4 : 6}
                 </div>
 
                 {/* Zoom Hint - Tiffany Style */}
@@ -790,12 +759,23 @@ function ProductsPageContent() {
                           : 'border-gray-200 hover:border-gray-400'
                       }`}
                     >
-                      <ProductImage 
-                        productId={selectedProduct.id} 
-                        imageIndex={index} 
-                        category={selectedProduct.category}
-                        size="text-lg"
-                      />
+                       {selectedProduct.id === 'amethyst-ring' && index < 4 ? (
+                         <img 
+                           src={`/Images/amethyst-ring-${index + 1}.${index === 0 ? 'jpeg' : 'jpg'}`}
+                           alt={`${selectedProduct.name} - Thumbnail ${index + 1}`}
+                           className="w-full h-full object-cover"
+                         />
+                       ) : (
+                         <div className="w-full h-full flex items-center justify-center text-lg">
+                           {index === 0 ? (
+                             selectedProduct.category === 'women' ? '💎' :
+                             selectedProduct.category === 'men' ? '💍' : '🕎'
+                           ) : index === 1 ? '✨' :
+                             index === 2 ? '💫' :
+                             index === 3 ? '🌟' :
+                             index === 4 ? '💎' : '💍'}
+                         </div>
+                       )}
                     </button>
                   ))}
                 </div>
@@ -897,14 +877,25 @@ function ProductsPageContent() {
 
           {/* Main Image Display */}
           <div className="w-full h-full flex items-center justify-center relative">
-            <div className="w-full h-full transition-all duration-500 ease-out">
-              <ProductImage 
-                productId={selectedProduct?.id || ''} 
-                imageIndex={zoomedImageIndex} 
-                category={selectedProduct?.category || 'unisex'}
-                size="text-[25rem]"
-              />
-            </div>
+             <div className="w-full h-full transition-all duration-500 ease-out">
+               {selectedProduct?.id === 'amethyst-ring' && zoomedImageIndex < 4 ? (
+                 <img 
+                   src={`/Images/amethyst-ring-${zoomedImageIndex + 1}.${zoomedImageIndex === 0 ? 'jpeg' : 'jpg'}`}
+                   alt={`${selectedProduct.name} - Zoomed Image ${zoomedImageIndex + 1}`}
+                   className="w-full h-full object-contain"
+                 />
+               ) : (
+                 <div className="text-[25rem]">
+                   {zoomedImageIndex === 0 ? (
+                     selectedProduct?.category === 'women' ? '💎' :
+                     selectedProduct?.category === 'men' ? '💍' : '🕎'
+                   ) : zoomedImageIndex === 1 ? '✨' :
+                     zoomedImageIndex === 2 ? '💫' :
+                     zoomedImageIndex === 3 ? '🌟' :
+                     zoomedImageIndex === 4 ? '💎' : '💍'}
+                 </div>
+               )}
+             </div>
 
             {/* Navigation Arrows */}
             <button 
@@ -941,12 +932,23 @@ function ProductsPageContent() {
                       : 'border-gray-300 hover:border-gray-500'
                   }`}
                 >
-                  <ProductImage 
-                    productId={selectedProduct?.id || ''} 
-                    imageIndex={index} 
-                    category={selectedProduct?.category || 'unisex'}
-                    size="text-lg"
-                  />
+                   {selectedProduct?.id === 'amethyst-ring' && index < 4 ? (
+                     <img 
+                       src={`/Images/amethyst-ring-${index + 1}.${index === 0 ? 'jpeg' : 'jpg'}`}
+                       alt={`${selectedProduct.name} - Zoom Thumbnail ${index + 1}`}
+                       className="w-full h-full object-cover"
+                     />
+                   ) : (
+                     <div className="w-full h-full flex items-center justify-center text-lg">
+                       {index === 0 ? (
+                         selectedProduct?.category === 'women' ? '💎' :
+                         selectedProduct?.category === 'men' ? '💍' : '🕎'
+                       ) : index === 1 ? '✨' :
+                         index === 2 ? '💫' :
+                         index === 3 ? '🌟' :
+                         index === 4 ? '💎' : '💍'}
+                     </div>
+                   )}
                 </button>
               ))}
             </div>
