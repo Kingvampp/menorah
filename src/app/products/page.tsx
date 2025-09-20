@@ -699,8 +699,8 @@ function ProductsPageContent() {
             </button>
           </div>
 
-          {/* Main Content - Single Column Layout */}
-          <div className="flex flex-col">
+          {/* Main Content - Centered Layout */}
+          <div className="flex flex-col max-w-4xl mx-auto">
             {/* Product Image Section */}
             <div className="relative bg-white">
               {/* Main Image Display */}
@@ -748,8 +748,8 @@ function ProductsPageContent() {
 
               {/* Thumbnail Strip */}
               <div className="bg-white border-t border-gray-200 p-4">
-                <div className="flex gap-3 overflow-x-auto scrollbar-hide">
-                  {[0, 1, 2, 3, 4, 5].map((index) => (
+                <div className="flex gap-3 justify-center overflow-x-auto scrollbar-hide">
+                  {(selectedProduct.id === 'amethyst-ring' ? [0, 1, 2, 3] : [0, 1, 2, 3, 4, 5]).map((index) => (
                     <button
                       key={index}
                       onClick={() => setCurrentImageIndex(index)}
@@ -763,17 +763,11 @@ function ProductsPageContent() {
                          <img 
                            src={`/Images/amethyst-ring-${index + 1}.${index === 0 ? 'jpeg' : 'jpg'}`}
                            alt={`${selectedProduct.name} - Thumbnail ${index + 1}`}
-                           className="w-full h-full object-cover"
+                           className="w-full h-full object-cover rounded"
                          />
                        ) : (
-                         <div className="w-full h-full flex items-center justify-center text-lg">
-                           {index === 0 ? (
-                             selectedProduct.category === 'women' ? '💎' :
-                             selectedProduct.category === 'men' ? '💍' : '🕎'
-                           ) : index === 1 ? '✨' :
-                             index === 2 ? '💫' :
-                             index === 3 ? '🌟' :
-                             index === 4 ? '💎' : '💍'}
+                         <div className="w-full h-full flex items-center justify-center bg-gray-100 rounded">
+                           <div className="w-6 h-6 bg-gray-300 rounded"></div>
                          </div>
                        )}
                     </button>
@@ -783,7 +777,7 @@ function ProductsPageContent() {
             </div>
 
             {/* Product Details Section */}
-            <div className="px-4 py-6 space-y-6">
+            <div className="px-4 py-6 space-y-6 text-center">
               {/* Product Title & Price */}
               <div>
                 <h2 className="text-2xl font-light text-gray-900 tracking-wide mb-1">
@@ -796,7 +790,7 @@ function ProductsPageContent() {
 
               {/* Product Description */}
               <div>
-                <p className="text-gray-600 font-light leading-relaxed">
+                <p className="text-gray-600 font-light leading-relaxed max-w-2xl mx-auto">
                   {selectedProduct.description}
                 </p>
               </div>
@@ -804,7 +798,7 @@ function ProductsPageContent() {
               {/* Features */}
               <div>
                 <h4 className="text-xs font-medium text-gray-900 tracking-widest uppercase mb-3">Features</h4>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 justify-center">
                   {selectedProduct.features.map((feature, index) => (
                     <span key={index} className="text-xs text-gray-600 bg-gray-50 px-3 py-1 rounded-full">
                       {feature}
@@ -936,17 +930,11 @@ function ProductsPageContent() {
                      <img 
                        src={`/Images/amethyst-ring-${index + 1}.${index === 0 ? 'jpeg' : 'jpg'}`}
                        alt={`${selectedProduct.name} - Zoom Thumbnail ${index + 1}`}
-                       className="w-full h-full object-cover"
+                       className="w-full h-full object-cover rounded"
                      />
                    ) : (
-                     <div className="w-full h-full flex items-center justify-center text-lg">
-                       {index === 0 ? (
-                         selectedProduct?.category === 'women' ? '💎' :
-                         selectedProduct?.category === 'men' ? '💍' : '🕎'
-                       ) : index === 1 ? '✨' :
-                         index === 2 ? '💫' :
-                         index === 3 ? '🌟' :
-                         index === 4 ? '💎' : '💍'}
+                     <div className="w-full h-full flex items-center justify-center bg-gray-100 rounded">
+                       <div className="w-6 h-6 bg-gray-300 rounded"></div>
                      </div>
                    )}
                 </button>
