@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { useCart } from '@/contexts/CartContext';
+import CartPreview from './CartPreview';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,6 +11,7 @@ export default function Navbar() {
   const [isScrollingUp, setIsScrollingUp] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [activeSection, setActiveSection] = useState('home');
+  const { getTotalItems } = useCart();
 
   // Handle scroll effect with elegant behavior
   useEffect(() => {
@@ -86,12 +89,19 @@ export default function Navbar() {
 
           {/* Right Side Icons */}
           <div className="hidden lg:flex items-center">
-            {/* Shopping Bag Icon */}
-            <button className="p-2 text-gray-600 hover:text-gray-900 transition-colors duration-300">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 12H6L5 9z" />
-              </svg>
-            </button>
+            {/* Shopping Bag Icon with Cart Preview */}
+            <CartPreview>
+              <Link href="/cart" className="relative p-2 text-gray-600 hover:text-gray-900 transition-colors duration-300">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l-1 12H6L5 9z" />
+                </svg>
+                {getTotalItems() > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-black text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                    {getTotalItems()}
+                  </span>
+                )}
+              </Link>
+            </CartPreview>
           </div>
 
           {/* Mobile menu button - positioned to avoid brand name conflict */}

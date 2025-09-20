@@ -3,12 +3,14 @@
 import { Canvas } from '@react-three/fiber';
 import { Suspense, useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useCart } from '@/contexts/CartContext';
 import { useSearchParams } from 'next/navigation';
 import Menorah3D from '@/components/Ring3D';
 import Navbar from '@/components/Navbar';
 
 function ProductsPageContent() {
   const searchParams = useSearchParams();
+  const { addToCart } = useCart();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [showSubCategories, setShowSubCategories] = useState(false);
   const [currentMainCategory, setCurrentMainCategory] = useState('all');
@@ -736,7 +738,20 @@ function ProductsPageContent() {
 
                  {/* Action Buttons */}
                  <div className="space-y-3 pt-4">
-                   <button className="w-full lg:w-auto lg:min-w-[200px] bg-black text-white py-4 px-6 text-sm font-medium tracking-widest uppercase hover:bg-gray-800 transition-colors">
+                   <button 
+                     onClick={() => {
+                       if (selectedProduct) {
+                         addToCart({
+                           id: selectedProduct.id,
+                           name: selectedProduct.name,
+                           price: selectedProduct.price,
+                           description: selectedProduct.description,
+                           image: selectedProduct.id === 'amethyst-ring' ? '/Images/amethyst-ring-1.jpeg' : selectedProduct.image
+                         });
+                       }
+                     }}
+                     className="w-full lg:w-auto lg:min-w-[200px] bg-black text-white py-4 px-6 text-sm font-medium tracking-widest uppercase hover:bg-gray-800 transition-colors"
+                   >
                      Add to Cart
                    </button>
                    <button className="w-full lg:w-auto lg:min-w-[200px] border border-gray-300 text-gray-900 py-4 px-6 text-sm font-medium tracking-widest uppercase hover:bg-gray-50 transition-colors">
