@@ -7,7 +7,7 @@ import { useSearchParams } from 'next/navigation';
 import Menorah3D from '@/components/Ring3D';
 import Navbar from '@/components/Navbar';
 
-function ProductsPageContent() {
+export default function ProductsPage() {
   const searchParams = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [showSubCategories, setShowSubCategories] = useState(false);
@@ -1036,10 +1036,3 @@ function ProductsPageContent() {
   );
 }
 
-export default function ProductsPage() {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <ProductsPageContent />
-    </Suspense>
-  );
-}
