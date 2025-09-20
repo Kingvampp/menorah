@@ -24,85 +24,99 @@ export default function Home() {
     return () => clearTimeout(textTimer);
   }, []);
 
-  // Track scroll progress for text animations
+  // Track scroll progress for text animations with mobile optimization
   useEffect(() => {
+    let animationFrameId: number;
+    
     const updateScrollProgress = () => {
       const scrollTop = window.scrollY;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress = Math.min(scrollTop / docHeight, 1);
       
-      // First page text slides horizontally left 10% faster than menorah movement
-      const firstPageTextSlide = 0 - (progress * 1.1 * 30); // Move from x=0 to x=-33 (10% faster than menorah, increased for mobile)
+      // Mobile detection for smaller movement values
+      const isMobile = window.innerWidth < 768;
+      const movementScale = isMobile ? 0.6 : 1; // Reduce movement on mobile for smoother feel
+      
+      // First page text slides horizontally left with smoother easing
+      const firstPageTextSlide = 0 - (progress * 1.1 * 20 * movementScale); // Reduced from 30 to 20
       setTextSlideX(firstPageTextSlide);
       
        // Second page text slides in from right - synced with scroll indicator
-       // When second bubble (middle dot) is filled (progress >= 0.33), text should be 100% visible at x=0
-       if (progress > 0) { // Start immediately when scrolling
+       if (progress > 0) {
          if (progress <= 0.33) {
-           // Slide in: Scale from 0 to 0.33 for the animation (when second bubble fills)
-           const secondPageProgress = Math.min(progress / 0.33, 1); // Scale to 0-1 over first 33% of scroll
-           const secondPageSlide = 30 - (secondPageProgress * 30); // Move from 30 to 0 (increased for mobile)
+           const secondPageProgress = Math.min(progress / 0.33, 1);
+           // Apply easing function for smoother animation
+           const easedProgress = 1 - Math.pow(1 - secondPageProgress, 3); // Cubic ease-out
+           const secondPageSlide = (20 * movementScale) - (easedProgress * 20 * movementScale);
            setSecondPageTextX(secondPageSlide);
          } else if (progress <= 0.5) {
-           // Stay visible: Keep at x=0 from 33% to 50% scroll
            setSecondPageTextX(0);
          } else if (progress <= 0.6) {
-           // Slide out: Move from x=0 to x=30 between 50% and 60% scroll (adjusted for earlier third page)
-           const slideOutProgress = (progress - 0.5) / 0.1; // Scale from 0-1 between 50% and 60%
-           const secondPageSlide = 0 + (slideOutProgress * 30); // Move from 0 to 30 (increased for mobile)
+           const slideOutProgress = (progress - 0.5) / 0.1;
+           const easedProgress = Math.pow(slideOutProgress, 2); // Quadratic ease-in
+           const secondPageSlide = 0 + (easedProgress * 20 * movementScale);
            setSecondPageTextX(secondPageSlide);
          }
        }
 
        // Third page text slides in from right - starts earlier for mobile
-       if (progress > 0.4) { // Start earlier at 40% instead of 50%
+       if (progress > 0.4) {
          if (progress <= 0.6) {
-           // Slide in: Scale from 0.4 to 0.6 for the animation
-           const thirdPageProgress = Math.min((progress - 0.4) / 0.2, 1); // Scale to 0-1 between 40% and 60%
-           const thirdPageSlide = 30 - (thirdPageProgress * 30); // Move from 30 to 0 (increased for mobile)
+           const thirdPageProgress = Math.min((progress - 0.4) / 0.2, 1);
+           const easedProgress = 1 - Math.pow(1 - thirdPageProgress, 3); // Cubic ease-out
+           const thirdPageSlide = (20 * movementScale) - (easedProgress * 20 * movementScale);
            setThirdPageTextX(thirdPageSlide);
          } else {
-           // Stay visible: Keep at x=0 from 60% onwards (no slide out)
            setThirdPageTextX(0);
          }
        }
 
        // Earring animation - follows same pattern as second page text but from left side
-       if (progress > 0) { // Start immediately when scrolling
+       if (progress > 0) {
          if (progress <= 0.33) {
-           // Slide in: Scale from 0 to 0.33 for the animation (when second bubble fills)
-           const earringProgress = Math.min(progress / 0.33, 1); // Scale to 0-1 over first 33% of scroll
-           const earringSlide = -30 + (earringProgress * 30); // Move from -30 to 0 (increased for mobile)
+           const earringProgress = Math.min(progress / 0.33, 1);
+           const easedProgress = 1 - Math.pow(1 - earringProgress, 3); // Cubic ease-out
+           const earringSlide = (-20 * movementScale) + (easedProgress * 20 * movementScale);
            setEarringX(earringSlide);
          } else if (progress <= 0.5) {
-           // Stay visible: Keep at x=0 from 33% to 50% scroll
            setEarringX(0);
          } else if (progress <= 0.6) {
-           // Slide out: Move from x=0 to x=-30 between 50% and 60% scroll (adjusted for earlier third page)
-           const slideOutProgress = (progress - 0.5) / 0.1; // Scale from 0-1 between 50% and 60%
-           const earringSlide = 0 - (slideOutProgress * 30); // Move from 0 to -30 (increased for mobile)
+           const slideOutProgress = (progress - 0.5) / 0.1;
+           const easedProgress = Math.pow(slideOutProgress, 2); // Quadratic ease-in
+           const earringSlide = 0 - (easedProgress * 20 * movementScale);
            setEarringX(earringSlide);
          }
        }
 
        // Menorah animation for third page - starts earlier for mobile
-       if (progress > 0.4) { // Start earlier at 40% instead of 50%
+       if (progress > 0.4) {
          if (progress <= 0.6) {
-           // Slide in: Scale from 0.4 to 0.6 for the animation
-           const menorahProgress = Math.min((progress - 0.4) / 0.2, 1); // Scale to 0-1 between 40% and 60%
-           const menorahSlide = -30 + (menorahProgress * 30); // Move from -30 to 0 (increased for mobile)
+           const menorahProgress = Math.min((progress - 0.4) / 0.2, 1);
+           const easedProgress = 1 - Math.pow(1 - menorahProgress, 3); // Cubic ease-out
+           const menorahSlide = (-20 * movementScale) + (easedProgress * 20 * movementScale);
            setMenorahX(menorahSlide);
          } else {
-           // Stay visible: Keep at x=0 from 60% onwards (no slide out)
            setMenorahX(0);
          }
        }
     };
 
-    window.addEventListener('scroll', updateScrollProgress);
+    const handleScroll = () => {
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+      animationFrameId = requestAnimationFrame(updateScrollProgress);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     updateScrollProgress(); // Initial call
 
-    return () => window.removeEventListener('scroll', updateScrollProgress);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
   }, []);
 
   return (
@@ -117,7 +131,7 @@ export default function Home() {
         <div className="relative z-20 w-full max-w-7xl mx-auto px-4 sm:px-6 flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
           {/* Left side - Text content */}
           <div 
-            className="space-y-6 lg:space-y-8 text-center lg:text-left transition-transform duration-1000 ease-out order-2 lg:order-1 w-full lg:w-auto"
+            className="space-y-6 lg:space-y-8 text-center lg:text-left transition-transform duration-700 ease-out order-2 lg:order-1 w-full lg:w-auto will-change-transform"
             style={{ transform: `translateX(${textSlideX}rem)` }}
           >
             {/* Main heading */}
@@ -173,7 +187,7 @@ export default function Home() {
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
           {/* Left side - 3D Earring */}
           <div 
-            className="relative h-[500px] sm:h-[600px] lg:h-[800px] w-full overflow-visible transition-transform duration-1000 ease-out order-1 lg:order-1 flex justify-center"
+            className="relative h-[500px] sm:h-[600px] lg:h-[800px] w-full overflow-visible transition-transform duration-700 ease-out will-change-transform order-1 lg:order-1 flex justify-center"
             style={{ transform: `translateX(${earringX}rem)` }}
           >
             <Canvas 
@@ -193,7 +207,7 @@ export default function Home() {
 
           {/* Right side - Text content */}
           <div 
-            className="space-y-6 lg:space-y-8 text-center lg:text-right transition-transform duration-1000 ease-out order-2 lg:order-2 w-full lg:w-auto"
+            className="space-y-6 lg:space-y-8 text-center lg:text-right transition-transform duration-700 ease-out will-change-transform order-2 lg:order-2 w-full lg:w-auto"
             style={{ transform: `translateX(${secondPageTextX}rem)` }}
           >
             <div className="space-y-2">
@@ -232,7 +246,7 @@ export default function Home() {
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-12 items-center">
           {/* Left side - 3D Model */}
           <div 
-            className="relative h-[500px] sm:h-[600px] lg:h-[800px] w-full overflow-visible transition-transform duration-1000 ease-out order-1 lg:order-1 flex justify-center"
+            className="relative h-[500px] sm:h-[600px] lg:h-[800px] w-full overflow-visible transition-transform duration-700 ease-out will-change-transform order-1 lg:order-1 flex justify-center"
             style={{ transform: `translateX(${menorahX}rem)` }}
           >
             <Canvas 
@@ -255,7 +269,7 @@ export default function Home() {
 
           {/* Right side - Text content */}
           <div 
-            className="space-y-6 lg:space-y-8 text-center lg:text-right transition-transform duration-1000 ease-out order-2 lg:order-2 w-full lg:w-auto"
+            className="space-y-6 lg:space-y-8 text-center lg:text-right transition-transform duration-700 ease-out will-change-transform order-2 lg:order-2 w-full lg:w-auto"
             style={{ transform: `translateX(${thirdPageTextX}rem)` }}
           >
             <div className="space-y-2">
