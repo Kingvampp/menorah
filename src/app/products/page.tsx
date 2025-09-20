@@ -699,12 +699,82 @@ function ProductsPageContent() {
             </button>
           </div>
 
-          {/* Main Content - Centered Layout */}
-          <div className="flex flex-col max-w-4xl mx-auto">
-            {/* Product Image Section */}
-            <div className="relative bg-white">
-              {/* Main Image Display */}
-              <div className="aspect-square max-h-[600px] flex items-center justify-center relative bg-gray-50">
+          {/* Main Content - 2 Column Layout on Desktop */}
+          <div className="flex flex-col lg:flex-row max-w-6xl mx-auto">
+            {/* Left Column - Product Information */}
+            <div className="lg:w-1/2 lg:pr-8">
+              {/* Product Details Section */}
+              <div className="px-4 py-6 space-y-6 text-center lg:text-left">
+                {/* Product Title & Price */}
+                <div>
+                  <h2 className="text-2xl lg:text-3xl font-light text-gray-900 tracking-wide mb-1">
+                    {selectedProduct.name}
+                  </h2>
+                  <p className="text-xl lg:text-2xl font-light text-gray-900 tracking-wide">
+                    {selectedProduct.price}
+                  </p>
+                </div>
+
+                {/* Product Description */}
+                <div>
+                  <p className="text-gray-600 font-light leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                    {selectedProduct.description}
+                  </p>
+                </div>
+
+                {/* Features */}
+                <div>
+                  <h4 className="text-xs font-medium text-gray-900 tracking-widest uppercase mb-3">Features</h4>
+                  <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
+                    {selectedProduct.features.map((feature, index) => (
+                      <span key={index} className="text-xs text-gray-600 bg-gray-50 px-3 py-1 rounded-full">
+                        {feature}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="space-y-3 pt-4">
+                  <button className="w-full lg:w-auto lg:min-w-[200px] bg-black text-white py-4 px-6 text-sm font-medium tracking-widest uppercase hover:bg-gray-800 transition-colors">
+                    Add to Cart
+                  </button>
+                  <button className="w-full lg:w-auto lg:min-w-[200px] border border-gray-300 text-gray-900 py-4 px-6 text-sm font-medium tracking-widest uppercase hover:bg-gray-50 transition-colors">
+                    Contact Your Advisor
+                  </button>
+                </div>
+
+                {/* Additional Info */}
+                <div className="pt-6 border-t border-gray-200 space-y-3">
+                  <div className="flex items-center gap-2 text-sm text-gray-600 justify-center lg:justify-start">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    Free shipping worldwide
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-gray-600 justify-center lg:justify-start">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    Authenticity guaranteed
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-gray-600 justify-center lg:justify-start">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                    </svg>
+                    Lifetime warranty
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column - Product Images */}
+            <div className="lg:w-1/2 lg:pl-8">
+              {/* Product Image Section */}
+              <div className="relative bg-white">
+                {/* Main Image Display */}
+                <div className="aspect-square max-h-[600px] flex items-center justify-center relative bg-gray-50">
                 <div 
                   className="w-full h-full flex items-center justify-center cursor-pointer group"
                   onClick={() => handleImageZoom(currentImageIndex)}
@@ -776,64 +846,6 @@ function ProductsPageContent() {
               </div>
             </div>
 
-            {/* Product Details Section */}
-            <div className="px-4 py-6 space-y-6 text-center">
-              {/* Product Title & Price */}
-              <div>
-                <h2 className="text-2xl font-light text-gray-900 tracking-wide mb-1">
-                  {selectedProduct.name}
-                </h2>
-                <p className="text-xl font-light text-gray-900 tracking-wide">
-                  {selectedProduct.price}
-                </p>
-              </div>
-
-              {/* Product Description */}
-              <div>
-                <p className="text-gray-600 font-light leading-relaxed max-w-2xl mx-auto">
-                  {selectedProduct.description}
-                </p>
-              </div>
-
-              {/* Features */}
-              <div>
-                <h4 className="text-xs font-medium text-gray-900 tracking-widest uppercase mb-3">Features</h4>
-                <div className="flex flex-wrap gap-2 justify-center">
-                  {selectedProduct.features.map((feature, index) => (
-                    <span key={index} className="text-xs text-gray-600 bg-gray-50 px-3 py-1 rounded-full">
-                      {feature}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div className="space-y-3 pt-4">
-                <button className="w-full bg-black text-white py-4 px-6 text-sm font-medium tracking-widest uppercase hover:bg-gray-800 transition-colors">
-                  Add to Cart
-                </button>
-                <button className="w-full border border-gray-300 text-gray-900 py-4 px-6 text-sm font-medium tracking-widest uppercase hover:bg-gray-50 transition-colors">
-                  Contact Your Advisor
-                </button>
-              </div>
-
-              {/* Additional Info */}
-              <div className="pt-6 border-t border-gray-200 space-y-3">
-                <div className="flex items-center gap-2 text-sm text-gray-600">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  Find in Store
-                </div>
-                <div className="flex items-center gap-2 text-sm text-gray-600">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  Free Shipping & Returns
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       )}
